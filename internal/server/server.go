@@ -172,10 +172,13 @@ func New(
 func(s*Server) Start() error{
 	address:= fmt.Sprintf("%s:%s",s.Config.Host, s.Config.Port)
 	fmt.Println("Server starting on:",address)
+
 	corsHandler:=http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
 		origin:=r.Header.Get("Origin")
 
-		if origin=="http://localhost:5173"{
+		 allowedOrigin := origin=="http://localhost:5173" ||
+		 	origin==s.Config.FrontendOrigin
+		 if allowedOrigin{
 			w.Header().Set("Access-Control-Allow-Origin", origin)
 			w.Header().Set("Vary", "Origin")
 			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
