@@ -1,0 +1,1 @@
+import {useCallback,useState} from 'react';export function useToast(){const [toast,setToast]=useState('');const notify=useCallback(message=>setToast(message),[]);return {toast,notify,clear:()=>setToast('')}}

@@ -1,0 +1,1 @@
+import {FolderOpen} from 'lucide-react';export default function EmptyState({title='Nothing here yet',body='Your files will appear here.'}){return <div className="empty-state"><span><FolderOpen size={28}/></span><h3>{title}</h3><p>{body}</p></div>}

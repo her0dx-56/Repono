@@ -1,0 +1,2 @@
+export function validateAuth({name,email,password},mode){if(mode==='signup'&&!name.trim())return 'Please enter your name.';if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))return 'Enter a valid email address.';if(password.length<8)return 'Password must be at least 8 characters.';return ''}
+export function validateFile(file){if(!file)return 'Choose a file first.';if(file.size===0)return 'This file is empty.';return ''}

@@ -1,0 +1,1 @@
+import {Link} from 'react-router-dom';export default function Brand(){return <span className="brand"><span className="brand-symbol"><i/><b/><em/></span><span className="brand-name">REPONO<span>.</span><small>Your files. Your world.</small></span></span>}

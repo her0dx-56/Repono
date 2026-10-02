@@ -1,0 +1,30 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies and builds
+node_modules/
+dist/
+build/
+
+# Go
+vendor/
+
+# Logs
+*.log
+
+# IDE and OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local databases
+*.db
+
+# Uploaded files
+uploads/
+
+oversized-test.bin
+# Local file storage and uploaded user data
+/storage/
