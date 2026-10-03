@@ -14,6 +14,8 @@ import (
 	"net/http"
 	"time"
 	"context"
+	"strings
+	"
 )
 type Server struct{
 	Config config.Config
@@ -176,8 +178,11 @@ func(s*Server) Start() error{
 	corsHandler:=http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
 		origin:=r.Header.Get("Origin")
 
-		 allowedOrigin := origin=="http://localhost:5173" ||
-		 	origin==s.Config.FrontendOrigin
+		configuredOrigin:=strings.TrimRight(
+			strings.TrimSpace(s.Config.FrontendOrigin),"/",
+		)
+		allowedOrigin := origin == "http://localhost:5173" ||
+    		origin == configuredOrigin
 		 if allowedOrigin{
 			w.Header().Set("Access-Control-Allow-Origin", origin)
 			w.Header().Set("Vary", "Origin")
