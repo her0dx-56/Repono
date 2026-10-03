@@ -69,6 +69,12 @@ func(h *UserHandler) Login(w http.ResponseWriter, r *http.Request){
 			return
 		}
 		http.Error(w,"failed to login",http.StatusInternalServerError)
+		return
+	}
+
+	if user == nil{
+		http.Error(w, "failed to login", http.StatusInternalServerError)
+        return
 	}
 
 	token,err := h.jwtManager.GenerateToken(user.ID.String())
@@ -86,7 +92,7 @@ func(h *UserHandler) Login(w http.ResponseWriter, r *http.Request){
 		},
 	}
 
-	w.Header().Set("Content-Type","appliocation/json")
+	w.Header().Set("Content-Type","application/json")
 	json.NewEncoder(w).Encode(response)
 }
 
