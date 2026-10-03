@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      REDIS_ADDR: redis:6379
+      REDIS_ADDR: redis://redis:6379
       FRONTEND_ORIGIN: http://localhost:8081
     ports:
       - "9000:9000"

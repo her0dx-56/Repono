@@ -16,7 +16,10 @@ func main(){
 		log.Fatal("Database connection failed:",err)
 	}
 
-	redisClient:=redis.NewClient(cfg.RedisAddr)
+	redisClient,err:=redis.NewClient(cfg.RedisAddr)
+	if err != nil {
+    	log.Fatalf("Redis configuration failed: %v", err)
+	}
 	defer redisClient.Close()
 
 	err=redisClient.Ping(context.Background())

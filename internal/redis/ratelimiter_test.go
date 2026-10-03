@@ -1,16 +1,22 @@
 package redis
 
-import(
+import (
+	"go_dfs/internal/config"
 	"testing"
+	"log"
 	"context"
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 func TestRateLimiter_Allow(t *testing.T){
 	ctx:=context.Background()
 
-	client:=NewClient("localhost:6379")
+	client,err:=NewClient(config.Load().RedisAddr)
+	if err!=nil{
+		log.Fatalf("Redis configuration failed: %v", err)
+	}
 	defer client.Close()
 	
 	rateLimiter:=NewRateLimiter(client)
